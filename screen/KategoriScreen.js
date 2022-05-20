@@ -33,8 +33,7 @@ function KategoriScreen({navigation}) {
                               `<br>`
                               +item.penerbit+
                           `</li>`;
-                          // `<li>`+item.penerbit+`</li>`;
-                })
+                });
         html += `</ul>`;
 
     //print file
