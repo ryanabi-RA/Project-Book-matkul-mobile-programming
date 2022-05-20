@@ -19,7 +19,7 @@ function KategoriScreen({navigation}) {
     //data : hasil query, error : pesan error
     const { data, error } = await supabase
                               .from('kategori')
-                              .select('id, nama')
+                              .select('id, nama,penerbit,status')
                               .order('id', {ascending:false});
     //mengisi state data
     setData(data);
@@ -29,7 +29,11 @@ function KategoriScreen({navigation}) {
     //file content
     let html = `<ul>`;
                 data.map((item) => {
-                  html += `<li>`+item.nama+`</li>`;
+                  html += `<li>`+item.nama+`&nbsp;`+'('+item.status+')'+
+                              `<br>`
+                              +item.penerbit+
+                          `</li>`;
+                          // `<li>`+item.penerbit+`</li>`;
                 })
         html += `</ul>`;
 
