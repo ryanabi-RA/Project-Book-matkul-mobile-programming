@@ -38,12 +38,12 @@ function KategoriScreen({navigation}) {
   const onPrint = async(data) => {
     //file content
     let html = `<ul>`;
-                data.map((item) => {
-                  html += `<li>`+item.nama+`&nbsp;`+'('+item.status+')'+
-                              `<br>`
-                              +item.penerbit+
-                          `</li>`;
-                });
+          data.map((item) => {
+            html += 
+              `<li>`+item.nama+`&nbsp;`+'('+item.status+')'+`<br>`
+                    +item.penerbit+
+              `</li>`;
+          });
         html += `</ul>`;
 
     //print file
