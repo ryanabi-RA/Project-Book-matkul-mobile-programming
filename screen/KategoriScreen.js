@@ -35,15 +35,20 @@ function KategoriScreen({navigation}) {
     return setColor;
   }
 
+  const getStatus = (status) => {
+    var setStatus = (!status) ? "Tidak aktif":"Aktif";
+    return setStatus;
+  }
+
   const onPrint = async(data) => {
     //file content
     let html = `<ul>`;
-          data.map((item) => {
-            html += 
-              `<li>`+item.nama+`&nbsp;`+'('+item.status+')'+`<br>`
-                    +item.penerbit+
-              `</li>`;
-          });
+                data.map((item) => {
+                  html += `<li>`+ item.nama + `&nbsp;` + '(' + getStatus(item.status) +')'+
+                              `<br>`
+                              + item.penerbit +
+                          `</li>`;
+                });
         html += `</ul>`;
 
     //print file
