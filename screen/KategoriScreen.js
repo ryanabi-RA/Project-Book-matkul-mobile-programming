@@ -24,6 +24,16 @@ function KategoriScreen({navigation}) {
     //mengisi state data
     setData(data);
   }
+  
+  const getIcon = (icon) => {
+    var setIcon = (!icon) ? "close":"check";
+    return setIcon;
+  }
+
+  const getColor = (color) => {
+    var setColor = (!color) ? "red":"green";
+    return setColor;
+  }
 
   const onPrint = async(data) => {
     //file content
@@ -59,7 +69,13 @@ function KategoriScreen({navigation}) {
                 <List.Item
                   key={index}
                   title={item.nama}
-                  left={props => <List.Icon {...props} icon="folder" />}
+                  description={item.penerbit}
+                  left={props => 
+                    <List.Icon {...props} 
+                      icon={getIcon(item.status)} 
+                      color={getColor(item.status)} 
+                    />
+                  }
                   right={props => <List.Icon {...props} icon="pencil" />}
                   onPress={() => navigation.navigate('KategoriUbahScreen', {id: item.id})}
                 />
