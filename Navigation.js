@@ -15,6 +15,7 @@ import SettingScreen from './screen/SettingScreen';
 
 import BukuScreen from './screen/BukuScreen';
 import BukuTambahScreen from './screen/BukuTambahScreen';
+import BukuUbahScreen from './screen/BukuUbahScreen';
 
 function Navigation() {
   return (
@@ -27,6 +28,7 @@ function Navigation() {
         <Stack.Screen name="SettingScreen" component={SettingScreen} />
         <Stack.Screen name="BukuScreen" component={BukuScreen} />
         <Stack.Screen name="BukuTambahScreen" component={BukuTambahScreen} />
+        <Stack.Screen name="BukuUbahScreen" component={BukuUbahScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
