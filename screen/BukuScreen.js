@@ -53,6 +53,7 @@ function BukuScreen({navigation}) {
                   left={props => <List.Icon {...props} icon="book" />}
                   right={props => <List.Icon {...props} icon="pencil" />}
                   onPress={() => navigation.navigate('BukuUbahScreen', {id: item.id})}
+                  // onPress={() => console.log(item.id, item.judul, item.kategori.nama)}
                 />
               )}
         />

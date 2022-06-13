@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Alert } from 'react-native';
-import { Appbar, TextInput, Button, Switch, List } from 'react-native-paper';
+import { Appbar, TextInput, Button, List,Switch } from 'react-native-paper';
 import supabase from '../supabase';
 
 function KategoriUbahScreen({navigation, route}) {
   const [nama, setNama] = useState('');
   const [penerbit, setPenerbit] = useState('');
   const [status, setStatus] = useState('');
-  
+
   //script dijalankan ketika screen diakses
   useEffect(() => {
     getData();
@@ -16,11 +16,11 @@ function KategoriUbahScreen({navigation, route}) {
   const getData = async() => {
     const { data, error } = await supabase
                               .from('kategori')
-                              .select('nama', 'penerbit', 'status')
+                              .select('nama,penerbit,status')
                               .eq('id', route.params.id)
                               .single();
     setNama(data.nama);
-    setPenerbit(data.Penerbit);
+    setPenerbit(data.penerbit);
     setStatus(data.status);
   }
 
@@ -29,7 +29,7 @@ function KategoriUbahScreen({navigation, route}) {
                               .from('kategori')
                               .update({
                                 nama: nama,
-                                penerbit: penerbit,
+                                penerbit:penerbit,
                                 status: status,
                               })
                               .eq('id', route.params.id);
@@ -53,7 +53,7 @@ function KategoriUbahScreen({navigation, route}) {
                               .delete()
                               .eq('id', route.params.id);
 
-    // Alert.alert("Pesan", "Data berhasil dihapus");
+    Alert.alert("Pesan", "Data berhasil dihapus");
     navigation.goBack()
   }
 
@@ -62,7 +62,7 @@ function KategoriUbahScreen({navigation, route}) {
       <Appbar.Header>
         <Appbar.BackAction onPress={() => navigation.goBack()} />
         <Appbar.Content title="Ubah Kategori" />
-        <Appbar.Action icon="delete" onPress={() => onHapus()} />
+        <Appbar.Action icon="delete" onPress={() => konfirmasiHapus()} />
       </Appbar.Header>
 
       <TextInput
@@ -71,22 +71,19 @@ function KategoriUbahScreen({navigation, route}) {
         onChangeText={text => setNama(text)}
       />
 
-      <TextInput
+    <TextInput
         label="Penerbit"
         value={penerbit}
         onChangeText={text => setPenerbit(text)}
       />
-      
-      <List.Item
-        title="Status"
-        right={props =>
-          <Switch 
-            value={status}
-            onValueChange={(status) => setStatus(status)}
-          />
-        }
-      />
 
+<List.Item
+      title="Status"
+      right={ props =>
+    <Switch
+          value={status}
+          onValueChange={(status)=>setStatus(status)}
+        />}/>
       <Button 
         icon="content-save" 
         mode="contained" 

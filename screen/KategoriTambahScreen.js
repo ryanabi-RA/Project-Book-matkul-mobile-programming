@@ -7,6 +7,7 @@ function KategoriTambahScreen({navigation}) {
   const [nama, setNama] = useState('');
   const [penerbit, setPenerbit] = useState('');
   const [StatusSwitch, setStatusSwitch] = useState (false);
+  
 
   const onSimpan = async() => {
     //data : hasil query, error : pesan error

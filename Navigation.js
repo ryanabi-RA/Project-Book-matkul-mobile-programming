@@ -2,33 +2,25 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
-
+import { MaterialIcons,MaterialCommunityIcons } from '@expo/vector-icons';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 const Tab = createMaterialBottomTabNavigator();
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import HomeScreen from './screen/HomeScreen';
-import KategoriScreen from './screen/KategoriScreen';
-import KategoriTambahScreen from './screen/KategoriTambahScreen';
-import KategoriUbahScreen from './screen/KategoriUbahScreen';
-import SettingScreen from './screen/SettingScreen';
 
-import BukuScreen from './screen/BukuScreen';
-import BukuTambahScreen from './screen/BukuTambahScreen';
-import BukuUbahScreen from './screen/BukuUbahScreen';
+import HomeScreen from './screen_tb2/HomeScreen';
+import AccountScreen from './screen_tb2/AccountScreen';
+import HistoryScreen from './screen_tb2/HistoryScreen';
+import BookingScreen from './screen_tb2/BookingScreen';
+import SearchScreen from './screen_tb2/SearchScreen';
+import OrderScreen from './screen_tb2/OrderScreen';
 
 function Navigation() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown:false}}>
-        <Stack.Screen name="HomeScreen" component={NavigationTab} />
-        <Stack.Screen name="KategoriScreen" component={KategoriScreen} />
-        <Stack.Screen name="KategoriTambahScreen" component={KategoriTambahScreen} />
-        <Stack.Screen name="KategoriUbahScreen" component={KategoriUbahScreen} />
-        <Stack.Screen name="SettingScreen" component={SettingScreen} />
-        <Stack.Screen name="BukuScreen" component={BukuScreen} />
-        <Stack.Screen name="BukuTambahScreen" component={BukuTambahScreen} />
-        <Stack.Screen name="BukuUbahScreen" component={BukuUbahScreen} />
+      <Stack.Screen name="HomeScreen" component={NavigationTab} />
+      <Stack.Screen name="SearchScreen" component={SearchScreen} />
+      <Stack.Screen name="OrderScreen" component={OrderScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -36,51 +28,47 @@ function Navigation() {
 
 function NavigationTab() {
   return (
-    <Tab.Navigator
-      activeColor="white"
-      barStyle={{ backgroundColor: 'blue' }}
-    >
-      <Tab.Screen
+    <Tab.Navigator 
+    activeColor="blue"
+    barStyle={{ 
+      backgroundColor: 'white',
+      height: 80, 
+      justifyContent: "center",
+    }}
+  >
+    <Tab.Screen
         name="HomeTab"
         component={HomeScreen}
         options={{
           tabBarLabel: 'Home',
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="home" color={color} size={26} />
-          ),
+          tabBarIcon: ({ color }) => (<MaterialCommunityIcons  name="home" color={color} size={26} />),
         }}
       />
-      <Tab.Screen
-        name="KategoriTab"
-        component={KategoriScreen}
-        options={{
-          tabBarLabel: 'Kategori',
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="book" color={color} size={26} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="BukuTab"
-        component={BukuScreen}
-        options={{
-          tabBarLabel: 'Buku',
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="file" color={color} size={26} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="SettingTab"
-        component={SettingScreen}
-        options={{
-          tabBarLabel: 'Setting',
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="cog" color={color} size={26} />
-          ),
-        }}
-      />
-    </Tab.Navigator>
+    <Tab.Screen
+      name="TicketTab"
+      component={BookingScreen}
+      options={{
+        tabBarLabel: 'Tiket',
+        tabBarIcon: ({ color }) => (<MaterialCommunityIcons name="ticket-percent" color={color}size={26} />),
+      }}
+    />
+    <Tab.Screen
+      name="HistoryScreen"
+      component={HistoryScreen}
+      options={{
+        tabBarLabel: 'Riwayat',
+        tabBarIcon: ({ color }) => (<MaterialIcons name="history-edu" size={24} color={color} />),
+      }}
+    />
+    <Tab.Screen
+      name="AkunTab"
+      component={AccountScreen}
+      options={{
+        tabBarLabel: 'Akun',
+        tabBarIcon: ({ color }) => (<MaterialCommunityIcons name="account" color={color} size={26} />),
+      }}
+    /> 
+  </Tab.Navigator>
   );
 }
 

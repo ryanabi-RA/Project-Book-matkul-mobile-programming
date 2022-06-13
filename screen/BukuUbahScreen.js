@@ -11,6 +11,7 @@ function BukuUbahScreen({navigation, route}) {
   const [kategori_id, setKategori] = useState('');
 
   const [judul, setJudul] = useState('');
+  const [idPicker, setIdPicker] = useState('');
 
   useEffect(() => {
     getKategori();
@@ -22,8 +23,9 @@ function BukuUbahScreen({navigation, route}) {
     const { data, error } = await supabase
                               .from('kategori')
                               .select('id, nama')
-                              .eq('id', route.params.id)
-                              .order('nama', {ascending:true});
+                              .order('nama', {ascending:true})
+                              // .eq('id', route.params.id)
+                              // .single();
     setDataPicker(data);
   }
   const getData = async() => {
@@ -33,6 +35,7 @@ function BukuUbahScreen({navigation, route}) {
                               .eq('id', route.params.id)
                               .single();
     setJudul(data.judul);
+    // setkategori_id(data.kategori_id);
   }
 
   const onSimpan = async() => {
@@ -46,7 +49,7 @@ function BukuUbahScreen({navigation, route}) {
     Alert.alert("Pesan", "Data berhasil disimpan");
     navigation.goBack();
   }
-  
+
   return (
     <>
       <Appbar.Header>
@@ -58,12 +61,18 @@ function BukuUbahScreen({navigation, route}) {
         selectedValue={kategori_id}
         onValueChange={(value) => setKategori(value)}
       >
-        <Picker.Item label="Pilih" value="" />
+        {/* <Picker.Item label="Pilih" value="" /> */}
         {dataPicker.map((row) => 
           <Picker.Item label={row.nama} value={row.id} />
         )}
       </Picker>
 
+      <TextInput
+        label="Judul"
+        value={judul}
+        onChangeText={text => setJudul(text)}
+      />
+      
       <TextInput
         label="Judul"
         value={judul}
